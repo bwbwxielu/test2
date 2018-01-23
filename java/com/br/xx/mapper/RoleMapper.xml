@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.br.xx.mapper.RoleMapper">
+  	<select id="list" resultType="com.br.xx.bean.Role">
+  		select * from t_role
+  		<if test="lname!=null">
+  			where name like concat ('%',#{lname},'%')
+  		</if>
+  		limit #{offset},#{pagesize}
+  	</select>
+  	<select id="getTotal" resultType="long">
+  		select count(*) from t_role
+  		<if test="lname!=null">
+  			where name like concat ('%',#{lname},'%')
+  		</if>
+  	</select>
+</mapper>
